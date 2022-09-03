@@ -1,28 +1,28 @@
 puts "🌱 Seeding messages..."
 
-Message.create([
+Review.create([
   {
-    resturant: "villarosa"
+    resturant: "villarosa",
     body: "Great services",
     username: "Liza"
   },
   {
-    resturant: "villarosa"
+    resturant: "villarosa",
     body: "Hi!",
     username: "Duane"
   },
   {
-    resturant: "villarosa"
+    resturant: "villarosa",
     body: "let's get this chat app working",
     username: "Jay"
   },
   {
-    resturant: "villarosa"
+    resturant: "villarosa",
     body: "ngl, this looks like a lot 😬",
     username: "Anna"
   },
   {
-    resturant: "villarosa"
+    resturant: "villarosa",
     body: "AWesome services 💪",
     username: "Harvey"
   }
