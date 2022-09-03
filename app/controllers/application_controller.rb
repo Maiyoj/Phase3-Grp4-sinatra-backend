@@ -8,9 +8,9 @@ class ApplicationController < Sinatra::Base
 
       post '/reviews' do
         review = Review.create(
-          resturant: params[:resturant],
           body: params[:body],
-          username: params[:username]
+          restaurant_id: params[:restaurant_id],
+          user_id: params[:user_id]
         )
         review.to_json
       end
