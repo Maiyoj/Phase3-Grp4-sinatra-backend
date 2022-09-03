@@ -1,31 +1,32 @@
-puts "🌱 Seeding messages..."
+puts "🌱 Seeding data..."
 
-Review.create([
-  {
-    resturant: "villarosa",
-    body: "Great services",
-    username: "Liza"
-  },
-  {
-    resturant: "villarosa",
-    body: "Hi!",
-    username: "Duane"
-  },
-  {
-    resturant: "villarosa",
-    body: "let's get this chat app working",
-    username: "Jay"
-  },
-  {
-    resturant: "villarosa",
-    body: "ngl, this looks like a lot 😬",
-    username: "Anna"
-  },
-  {
-    resturant: "villarosa",
-    body: "AWesome services 💪",
-    username: "Harvey"
-  }
-])
+# Make 10 users
+30.times do
+  User.create(name: Faker::Name.name)
+end
 
-puts "✅ Done seeding!"
+
+10.times do
+  # create a restaurant  with random data
+  restaurant = Restaurant.create(
+    name: Faker::Name.unique.name,
+    location: Faker::Name.unique.name
+  )
+  
+  # create between 1 and 5 reviews for each res
+  rand(1..5).times do
+    # get a random user for every review
+    # https://stackoverflow.com/a/25577054
+    user = User.order('RANDOM()').first
+
+    # A review belongs to a  res and a user, so we must provide those foreign keys
+    Review.create(
+      body: Faker::Lorem.sentence,
+      restaurant_id: restaurant.id,
+      user_id: user.id
+    )
+  end
+end
+
+puts "🌱 Done seeding!"
+
