@@ -2,8 +2,8 @@ class ApplicationController < Sinatra::Base
     set :default_content_type, 'application/json'
 
     get '/reviews' do
-        review = Review.all
-        review.to_json
+      restaurant = Restaurant.all
+        restaurant.to_json(include: {reviews: {only: [:body], include: {user: {only: [:name]}}}})
       end
 
       post '/reviews' do
