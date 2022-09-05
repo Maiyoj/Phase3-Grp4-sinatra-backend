@@ -21,6 +21,13 @@ class ApplicationController < Sinatra::Base
 
       end
 
+      get '/users' do
+        users = User.all
+        users.to_json
+      end
+
+      # resutrants routes
+
       get '/restaurants' do 
         restaurant = Restaurant.all
         restaurant.to_json
@@ -33,9 +40,24 @@ class ApplicationController < Sinatra::Base
         )
         restaurant.to_json
     end
+    
+    delete '/restaurants/:id' do 
+      restaurant = Restaurant.find(params[:id])
+      restaurant.destroy
+      restaurant.to_json
+    end
 
-      get '/users' do
-        users = User.all
-        users.to_json
-      end
+    patch '/restaurants/:id' do 
+      restaurant = Restaurant.find(params[:id])
+       restaurant.update(
+        name: params[:name],
+        location: params[:location]
+      )
+      restaurant.to_json
+    end
+
+
+
+
+      
 end
