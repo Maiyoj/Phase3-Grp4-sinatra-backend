@@ -26,9 +26,12 @@ class ApplicationController < Sinatra::Base
         restaurant.to_json
       end
 
-      post '/restaurants'
-      name: params[:name],
-      location: params[:location]
+      post '/restaurants' do
+        restaurant = Restaurant.create(
+          name: params[:name],
+          location: params[:location]
+        )
+        restaurant.to_json
     end
 
       get '/users' do
