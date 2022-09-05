@@ -29,7 +29,6 @@ class ApplicationController < Sinatra::Base
       post '/restaurants'
       name: params[:name],
       location: params[:location]
-
     end
 
       get '/users' do
