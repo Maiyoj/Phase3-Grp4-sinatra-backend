@@ -6,12 +6,28 @@ class ApplicationController < Sinatra::Base
         restaurant.to_json(include: {reviews: {only: [:body], include: {user: {only: [:name]}}}})
       end
 
-      post '/reviews' do
+      post '/reviewss' do
         review = Review.create(
           body: params[:body],
           restaurant_id: params[:restaurant_id],
           user_id: params[:user_id]
         )
         review.to_json
+      end
+
+      get '/reviewss' do
+        reviewss = Review.all
+        reviewss.to_json
+
+      end
+
+      get '/restaurants' do 
+        restaurant = Restaurant.all
+        restaurant.to_json
+      end
+
+      get '/users' do
+        users = User.all
+        users.to_json
       end
 end
